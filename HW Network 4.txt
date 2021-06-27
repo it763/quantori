@@ -1,0 +1,38 @@
+4. Исследовать работу протокола ICMP и утилит traceroute и ping:
+
+- Выяснить количество хопов до крупных сетевых узлов: google, yandex, cisco, aws, microsoft, etc.
+
+google.com         21      
+yandex.ru          6    
+cisco.com          16
+aws.amazon.com     14  
+microsoft.com      icmp закрыт
+quantori.com       18
+
+- Попробовать определить ОС которая управляет доступными серверами этих сетевых узлов.
+
+google.com         Linux 2.6.23-gentoo-r3  веб-сервер gws    
+yandex.ru          Linux 2.4.21 - 2.4.25   веб-сервер нет инфо   
+cisco.com          Linux 2.6.23-gentoo-r3  веб-сервер Apache
+aws.amazon.com     Linux 2.6.23-gentoo-r3  веб-сервер CloudFront
+microsoft.com      Linux 2.6.23-gentoo-r3  веб-сервер Kestrel
+quantori.com       Linux 2.6.23-gentoo-r3  веб-сервер nginx/1.21.0
+
+- При помощи утилиты mtr определить узкие места в сети по маршруту до этих узлов.
+
+google.com         108.170.250.1 - потери 21%, 216.239.51.32 - потери 43%.   
+yandex.ru          styri.yndx.net - в сравнении с остальными узлами большая средняя задержка.   
+cisco.com          lag-120.ear2.stockholm2.level3.net - 86% потерь.
+aws.amazon.com     нет явных узких мест на маршруте  
+microsoft.com      icmp судя по всему закрыт, но по части маршрута видно что на узле 46.61.227.174 - 54% потерь
+quantori.com       216.239.51.32 - 30% потерь
+
+- Сравнить результаты выполнения traceroute при использовании разных сетевых протоколов: IP, TCP, UDP.  (IP - в смысле icmp, опечатка?)
+Тесты проводились с хоста, отличного от того, на котором выполянилсь задания выше
+
+google.com         icmp - 20,      tcp - 20,   udp - закрыт
+yandex.ru          icmp - 9,       tcp - 10,   udp - закрыт Разница в количестве хопов icmp/tcp - предполагаю, что на icmp отвечает шлюз, на tcp - веб сервер за шлюзом, отсюда дополнительные хопы.  
+cisco.com          icmp - 16,      tcp - 16,   udp - закрыт
+aws.amazon.com     icmp - 17,      tcp - 17,   udp - закрыт
+microsoft.com      icmp - закрыт,  tcp - 30,   udp - закрыт
+quantori.com       icmp - 20,      tcp - 20,   udp - закрыт

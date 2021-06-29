@@ -1,0 +1,88 @@
+Запрос (просто post запрос на страницу httpbin.org/post, которая разрешает метод post)
+
+POST /post HTTP/1.1
+Host: httpbin.org
+
+Листинг
+[admin@web ~]$ telnet httpbin.org 80
+Trying 18.235.124.214...
+Connected to httpbin.org.
+Escape character is '^]'.
+
+POST /post HTTP/1.1
+Host: httpbin.org
+
+HTTP/1.1 200 OK
+Date: Tue, 29 Jun 2021 14:02:49 GMT
+Content-Type: application/json
+Content-Length: 261
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+  "args": {},
+  "data": "",
+  "files": {},
+  "form": {},
+  "headers": {
+    "Host": "httpbin.org",
+    "X-Amzn-Trace-Id": "Root=1-60db2809-6f76e69750d806cf6d0b8855"
+  },
+  "json": null,
+  "origin": "81.200.211.9",
+  "url": "http://httpbin.org/post"
+}
+
+
+
+Post запрос с указанием параметров
+
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Length: 25
+Content-Type: application/x-www-form-urlencoded
+
+param1=test1&param2=test2
+
+Листинг
+
+[admin@web ~]$ telnet httpbin.org 80
+Trying 54.91.118.50...
+Connected to httpbin.org.
+Escape character is '^]'.
+POST /post HTTP/1.1
+Host: httpbin.org
+Content-Length: 25
+Content-Type: application/x-www-form-urlencoded
+
+param1=test1&param2=test2
+HTTP/1.1 200 OK
+Date: Tue, 29 Jun 2021 14:04:47 GMT
+Content-Type: application/json
+Content-Length: 397
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+  "args": {},
+  "data": "",
+  "files": {},
+  "form": {
+    "param1": "test1",
+    "param2": "test2"
+  },
+  "headers": {
+    "Content-Length": "25",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Host": "httpbin.org",
+    "X-Amzn-Trace-Id": "Root=1-60db287f-3e5dcd2b437bea8f7b159346"
+  },
+  "json": null,
+  "origin": "81.200.211.9",
+  "url": "http://httpbin.org/post"
+}
+

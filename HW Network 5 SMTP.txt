@@ -1,0 +1,82 @@
+#Домен, логины и пароли в тексте ниже случайные и код в реале работать не будет. Если использовать реальные учетные данные почты на Яндексе - все будет ок.
+
+Подключаемся с помощью telnet к smtp серверу Яндекса.
+telnet smtp.yandex.ru 25
+Представляемся
+ehlo mydomain.ru
+Логинимся
+auth login
+Получаем
+530 5.7.7 Email sending without SSL/TLS encryption is not allowed. Please see: https://yandex.ru/support/mail/mail-clients/ssl.html
+Нужно шифрованое соединение.
+
+Подключаемся шифрованым соединением с помощью openssl
+openssl.exe s_client  -starttls smtp -connect smtp.yandex.ru:25
+Представляемся
+ehlo mydomain.ru
+Логинимся
+auth login
+Получаем запрос на ввод логина
+334 VXNlcm5hbWU6
+И пароля
+334 UGFzc3dvcmQ6
+Логин и пароль вводятся в формате Base64.
+Конвертировать можно тут
+http://base64.ru/
+
+Если пароль в формате Base64 начинается на Q - то при вводе пароля нужно будет поставить пробел перед ним. Иначе программа воспринимает
+ключ Q как команды к выходу и завершает работу.
+
+Получаем сообщение об успешной авторизации.
+235 2.7.0 Authentication successful.
+
+Указываем отправителя и получателя
+mail from:admin@mydomain.ru
+rcpt to:admin@mydomain.ru
+
+Для начала набора письма вводим
+data
+Указываем отправителя и получателя, которые будут отображены в письме
+from: admin@mydomain.ru
+to: admin@mydomain.ru
+Тему
+Subject: test mail from cmd
+
+Текст сообщения
+
+.
+
+. в конце - как знак окончания письма.
+
+В итоге получется следующий листинг:
+
+ehlo mydomain.ru
+250-vla5-8422ddc3185d.qloud-c.yandex.net
+250-8BITMIME
+250-PIPELINING
+250-SIZE 42991616
+250-AUTH LOGIN PLAIN XOAUTH2
+250-DSN
+250 ENHANCEDSTATUSCODES
+auth login
+334 VXNlcm5hbWU6
+YWRtaW5AbXlkb21haW4ucnU=
+334 UGFzc3dvcmQ6
+ Q6n44HhE5R7cEA11
+235 2.7.0 Authentication successful.
+mail from:admin@mydomain.ru
+250 2.1.0 <admin@mydomain.ru> ok
+rcpt to:admin@mydomain.ru
+250 2.1.5 <admin@mydomain.ru> recipient ok
+data
+354 Enter mail, end with "." on a line by itself
+from: admin@mydomain.ru
+to: admin@mydomain.ru
+Subject: test mail from cmd
+
+This is test
+
+.
+250 2.0.0 Ok: queued on vla5-8422ddc3185d.qloud-c.yandex.net as 1624973694-JSrEARERMv-Y22CSg1v
+
+

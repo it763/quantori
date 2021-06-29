@@ -1,4 +1,4 @@
-Запрос (просто старотовая страница httpbin.org)
+Запрос (просто стартовая страница httpbin.org)
 
 GET / HTTP/1.1
 Host: httpbin.org

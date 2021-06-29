@@ -10,13 +10,22 @@ microsoft.com      icmp закрыт
 quantori.com       18
 
 - Попробовать определить ОС которая управляет доступными серверами этих сетевых узлов.
-
+По данным Zenmap c gui ОС предположительно следующие:
 google.com         Linux 2.6.23-gentoo-r3  веб-сервер gws    
 yandex.ru          Linux 2.4.21 - 2.4.25   веб-сервер нет инфо   
 cisco.com          Linux 2.6.23-gentoo-r3  веб-сервер Apache
 aws.amazon.com     Linux 2.6.23-gentoo-r3  веб-сервер CloudFront
-microsoft.com      Linux 2.6.23-gentoo-r3  веб-сервер Kestrel
+microsoft.com      icmp закрыт             веб-сервер Kestrel
 quantori.com       Linux 2.6.23-gentoo-r3  веб-сервер nginx/1.21.0
+
+Если опираться на значения TTL в ping ответах, то предположительно ОС будут такие
+google.com         Windows
+yandex.ru          Linux    
+cisco.com          Cisco
+aws.amazon.com     Cisco
+microsoft.com      icmp закрыт
+quantori.com       Windows
+
 
 - При помощи утилиты mtr определить узкие места в сети по маршруту до этих узлов.
 

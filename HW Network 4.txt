@@ -24,7 +24,7 @@ google.com         Linux 2.6.23-gentoo-r3
 yandex.ru          Linux 2.4.36 
 cisco.com          Linux 2.6.23-gentoo-r3
 aws.amazon.com     Linux 2.6.23-gentoo-r3
-microsoft.com      icmp закрыт
+microsoft.com      Linux 2.6.23-gentoo-r3
 quantori.com       Linux 2.6.23-gentoo-r3
 
 Версии WEB серверов

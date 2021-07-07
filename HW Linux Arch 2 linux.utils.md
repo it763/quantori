@@ -14,12 +14,12 @@
 **diff res1.txt res2.txt -y**  
 
 Сравниваем файлы командой diff, выводим результат в 2 колонки.  
-                                                              > /bin/sh
-/bin/bash                                                       /bin/bash
-/bin/sync                                                     | /usr/bin/sh
-/sbin/halt                                                    | /usr/bin/bash
-/sbin/nologin                                                 <
-/sbin/shutdown                                                <
+                                                              > /bin/sh  
+/bin/bash                                                       /bin/bash  
+/bin/sync                                                     | /usr/bin/sh  
+/sbin/halt                                                    | /usr/bin/bash  
+/sbin/nologin                                                 <  
+/sbin/shutdown                                                <  
 
 
 

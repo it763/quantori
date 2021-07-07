@@ -10,16 +10,17 @@
 * Выбрать все уникальные оболочки из файла /etc/passwd и сравнить со списком оболочек из файла /etc/shells  
 **cut -d: -f7 /etc/passwd | sort | uniq  > res1.txt**  
 **cat /etc/shells > res2.txt**  
-С помощью программы cut разбиваем файлы /etc/passwd и /etc/shells на поля по разделителю :. (Зная структуру этих файлов). Выводим значения 7 поля (оболочки) ==> Сортируем, выбираем уникальные значения ==> Передаем результаты в файлы.  
-**diff res1.txt res2.txt -y**  
+С помощью программы cut разбиваем файл /etc/passwd на поля по разделителю :. (Зная структуру файла). Выводим значения 7 поля (оболочки) ==> Сортируем, выбираем уникальные значения ==> Передаем результаты в файл.  
 
-Сравниваем файлы командой diff, выводим результат в 2 колонки.  
-                                                              > /bin/sh  
-/bin/bash                                                       /bin/bash  
-/bin/sync                                                     | /usr/bin/sh  
-/sbin/halt                                                    | /usr/bin/bash  
-/sbin/nologin                                                 <  
-/sbin/shutdown                                                <  
+
+  Сравниваем файлы командой diff, выводим результат в 2 колонки.  
+  **diff res1.txt res2.txt -y**   
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  > /bin/sh  
+  /bin/bash &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;   &nbsp; &nbsp;                                                         /bin/bash  
+  /bin/sync &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;   &nbsp; &nbsp;                                                       | /usr/bin/sh  
+  /sbin/halt &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;   &nbsp; &nbsp;                                                      | /usr/bin/bash  
+  /sbin/nologin &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;   &nbsp; &nbsp; &nbsp;                                                <  
+  /sbin/shutdown &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;   &nbsp; &nbsp;                                                 <  
 
 
 

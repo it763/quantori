@@ -12,6 +12,8 @@
 **cat /etc/shells > res2.txt**  
 С помощью программы cut разбиваем файлы /etc/passwd и /etc/shells на поля по разделителю :. (Зная структуру этих файлов). Выводим значения 7 поля (оболочки) ==> Сортируем, выбираем уникальные значения ==> Передаем результаты в файлы.  
 **diff res1.txt res2.txt -y**  
+
+Сравниваем файлы командой diff, выводим результат в 2 колонки.  
                                                               > /bin/sh
 /bin/bash                                                       /bin/bash
 /bin/sync                                                     | /usr/bin/sh
@@ -22,12 +24,6 @@
 
 
 
-Сравниваем файлы командой diff, выводим результат в 2 колонки.  
-/bin/bash &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /bin/bash  
-/bin/sync &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| /bin/sh  
-/sbin/halt &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | /usr/bin/bash  
-/sbin/nologin &nbsp; &nbsp; &nbsp; | /usr/bin/sh  
-/sbin/shutdown &nbsp; &nbsp;<  
 
 
 

@@ -13,8 +13,9 @@
 **chmod -R g+rws /var/ftp**  
 Устанавливаем GUID для папки, чтобы все вновь создаваемые файлы имели группу-владельца ftp-admin. Таким образом пользователь ftp-admin получает доступ ко всем подпапкам и файлам внутри /var/ftp  
 **chmod -R g+s /var/ftp**  
-Отбираем права у остальных.  
-**chmod -R o-rwx /var/ftp**  
+Отбираем права на изменение /var/ftp у остальных.  
+**chmod -R o-w /var/ftp**  
+
 Получаем список имен папок (и соответственно пользователей, которые должны быть владельцами папок), выводим в файл names.txt  
 **find /var/ftp  -type d | grep '/var/ftp/' |cut -d/ -f4 >names.txt**  
 Получаем  
@@ -39,7 +40,7 @@ done**
 chown -R .ftp-admin /var/ftp  
 chmod -R g+rws /var/ftp  
 chmod -R g+s /var/ftp  
-chmod -R o-rwx /var/ftp  
+chmod -R o-w /var/ftp  
 for name in $(find /var/ftp  -type d | grep '/var/ftp/' |cut -d/ -f4)  
 do  
 chown -R ${name} /var/ftp/${name}  

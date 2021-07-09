@@ -9,8 +9,8 @@
   
 Устанавливаем группу-владельца для всех подпапок и файлов /var/ftp - ftp-admin  
 **chown -R .ftp-admin /var/ftp**  
-Выдаем группе ftp-admin полные права на подпапки и файлы /var/ftp  
-**chmod -R g+rws /var/ftp**  
+Выдаем группе ftp-admin права запись/чтение на подпапки и файлы /var/ftp  
+**chmod -R g+rw /var/ftp**  
 Устанавливаем GUID для папки, чтобы все вновь создаваемые файлы имели группу-владельца ftp-admin. Таким образом пользователь ftp-admin получает доступ ко всем подпапкам и файлам внутри /var/ftp  
 **chmod -R g+s /var/ftp**  
 Отбираем права на изменение /var/ftp у остальных.  
@@ -22,12 +22,12 @@
 ivan  
 petr  
 …  
-Пишем скрипт.  Для каждого имени в файле берем папку с соответствующим именем, присваиваем ей пользователя-владельца с этим именем, даем ему полные права на папку и то, что в ней.  
+Пишем скрипт.  Для каждого имени в файле берем папку с соответствующим именем, присваиваем ей пользователя-владельца с этим именем, даем ему права на запись/чтение на папку и то, что в ней.  
 **#! /bin/bash  
 for name in $(cat names.txt)  
 do  
 chown -R ${name} /var/ftp/${name}  
-chmod -R u+rwx /var/ftp/${name}  
+chmod -R u+rw /var/ftp/${name}  
 done**  
   
 Делаем исполняемым   
@@ -38,13 +38,13 @@ done**
 Либо все можно поместить в один скрипт:  
 **#! /bin/bash  
 chown -R .ftp-admin /var/ftp  
-chmod -R g+rws /var/ftp  
+chmod -R g+rw /var/ftp  
 chmod -R g+s /var/ftp  
 chmod -R o-w /var/ftp  
 for name in $(find /var/ftp  -type d | grep '/var/ftp/' |cut -d/ -f4)  
 do  
 chown -R ${name} /var/ftp/${name}  
-chmod -R u+rwx /var/ftp/${name}  
+chmod -R u+rw /var/ftp/${name}  
 done**  
   
 В результате получаем:  

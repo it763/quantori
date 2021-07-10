@@ -15,6 +15,9 @@
 **chmod -R g+s /var/ftp**  
 Отбираем права на изменение /var/ftp у остальных.  
 **chmod -R o-w /var/ftp**  
+Даем всем право просматривать содержимое /var/ftp  
+**chmod  o+xr /var/ftp**  
+
 
 Получаем список имен папок (и соответственно пользователей, которые должны быть владельцами папок), выводим в файл names.txt  
 **find /var/ftp  -type d | grep '/var/ftp/' |cut -d/ -f4 >names.txt**  
@@ -41,6 +44,7 @@ chown -R .ftp-admin /var/ftp
 chmod -R g+rw /var/ftp  
 chmod -R g+s /var/ftp  
 chmod -R o-w /var/ftp  
+chmod  o+xr /var/ftp  
 for name in $(find /var/ftp  -type d | grep '/var/ftp/' |cut -d/ -f4)  
 do  
 chown -R ${name} /var/ftp/${name}  

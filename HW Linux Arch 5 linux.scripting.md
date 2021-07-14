@@ -1,4 +1,4 @@
-## HW Linux Arch 2 linux.scripting
+## HW Linux Arch 5 linux.scripting
 Программа ping в операционной системе solaris не выводит подробности взаимодействия по icmp, а кратко сообщает о том, доступен ли удаленный сетевой узел:
 $ ping google.com
 google.com is alive

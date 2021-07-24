@@ -74,6 +74,11 @@ Restart=always
 [Install]  
 WantedBy=multi-user.target  
   
+После добавления юнита нужно перезагрузить конфигурацию сервисов systemd.  
+systemctl daemon-reload  
+
+
+  
 **Демонстрация работы сервиса**  
   
 [root@devops system]# systemctl start filesharing.service  

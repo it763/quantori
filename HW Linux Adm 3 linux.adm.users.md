@@ -24,7 +24,7 @@
 &nbsp;&nbsp;**chmod -R g+s /var/ftp/$1**   #Устанавливаем GUID для папки, чтобы все вновь создаваемые файлы имели группу-владельца ftp-admin.  
 &nbsp;&nbsp;**chmod -R o-rwx /var/ftp/$1** #Отбираем права у остальных  
 &nbsp;&nbsp;**chmod -R u+rw /var/ftp/${1}** #Назначаем права пользователю  
-&nbsp;&nbsp;**echo Created new user $1 with password ${password}**  #Сообщаем имя пользователя и пароль 
+&nbsp;&nbsp;**echo Created new user $1 with password ${password}**  #Сообщаем имя пользователя и пароль  
 **fi**
   
 

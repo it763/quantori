@@ -11,17 +11,21 @@
 
 
 **#! /bin/bash**  
-**useradd  -s /bin/bash -m $1**   #заводим пользователя с оболочкой /bin/bash  и создаем ему домашний каталог.  
-**password=$(pwgen -1 -s -n 10)**  #С помощью программы pwgen генерируем случайный пароль из 10 символов  
-**echo $1:${password} | chpasswd**  #Задаем пользователю сгенерированный пароль  
-**mkdir /var/ftp/$1**  #Заводим директорию ftp  
-**chown -R $1 /var/ftp/$1**  #Делаем нового пользователя владельцем директории  
-**chown -R .ftp-admin /var/ftp/$1** #Назначаем группу владельца ftp-admin  
-**chmod -R g+rw /var/ftp/$1** #Назначаем права для группы  
-**chmod -R g+s /var/ftp/$1**   #Устанавливаем GUID для папки, чтобы все вновь создаваемые файлы имели группу-владельца ftp-admin.  
-**chmod -R o-rwx /var/ftp/$1** #Отбираем права у остальных  
-**chmod -R u+rw /var/ftp/${1}** #Назначаем права пользователю  
-**echo Created new user $1 with password ${password}**  #Сообщаем имя пользователя и пароль 
+**if [[ $(cat /etc/passwd | grep $1 | cut -d: -f1) == $1 ]]; then**  
+&nbsp;&nbsp;**echo User is already present on this server**    
+**else**  
+&nbsp;&nbsp;**useradd  -s /bin/bash -m $1**   #заводим пользователя с оболочкой /bin/bash  и создаем ему домашний каталог.  
+&nbsp;&nbsp;**password=$(pwgen -1 -s -n 10)**  #С помощью программы pwgen генерируем случайный пароль из 10 символов  
+&nbsp;&nbsp;**echo $1:${password} | chpasswd**  #Задаем пользователю сгенерированный пароль  
+&nbsp;&nbsp;**mkdir /var/ftp/$1**  #Заводим директорию ftp  
+&nbsp;&nbsp;**chown -R $1 /var/ftp/$1**  #Делаем нового пользователя владельцем директории  
+&nbsp;&nbsp;**chown -R .ftp-admin /var/ftp/$1** #Назначаем группу владельца ftp-admin  
+&nbsp;&nbsp;**chmod -R g+rw /var/ftp/$1** #Назначаем права для группы  
+&nbsp;&nbsp;**chmod -R g+s /var/ftp/$1**   #Устанавливаем GUID для папки, чтобы все вновь создаваемые файлы имели группу-владельца ftp-admin.  
+&nbsp;&nbsp;**chmod -R o-rwx /var/ftp/$1** #Отбираем права у остальных  
+&nbsp;&nbsp;**chmod -R u+rw /var/ftp/${1}** #Назначаем права пользователю  
+&nbsp;&nbsp;**echo Created new user $1 with password ${password}**  #Сообщаем имя пользователя и пароль 
+**fi**
   
 
 **Проверка работы скрипта**  

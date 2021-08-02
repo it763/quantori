@@ -22,4 +22,10 @@ for i in in_list:
         uniq_in_list.append(i)
 
 out_str=" ".join(uniq_in_list)
-print (out_str)
+print (out_str)  
+  
+#Более эффективный алгоритм с использование множества. Но не сохраняется порядок введенных элементов.
+
+#in_str=input('Введите текст, содержащий любые слова,слоги, числа или их комбинации, разделенные пробелом: ')
+#out_str=' '.join(list(set(in_str.split())))
+#print (out_str)

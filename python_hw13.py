@@ -8,7 +8,6 @@
 #Принимаются варианты C,c,F,f.
 #В результате функция выводит значение температуры в другой системе измерения.
 def translate(in_val):
-    global out_val
     in_list=list(in_val)
 
     if in_list[-1].lower() == 'c':

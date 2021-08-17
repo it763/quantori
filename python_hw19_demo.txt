@@ -1,0 +1,34 @@
+Запрос существующей записи
+
+Client:
+Запрос
+To get ip address for hostname type hostname, for example "google.com".
+To add new entry type ADD hostname:ip_address, for example "ADD my.google.com:228.228.228.228": domain.name
+Ответ
+127.0.0.1
+
+Server:
+Waiting for requests...
+client addr:  ('127.0.0.1', 62489)
+Received message:  domain.name
+
+
+Запрос отсутствующей записи
+
+Client
+Запрос
+To get ip address for hostname type hostname, for example "google.com".
+To add new entry type ADD hostname:ip_address, for example "ADD my.google.com:228.228.228.228": mail.ru
+Ответ
+No such entry
+
+Добавление новой записи(либо переопределение существующей)
+
+Client
+Запрос
+To get ip address for hostname type hostname, for example "google.com".
+To add new entry type ADD hostname:ip_address, for example "ADD my.google.com:228.228.228.228": ADD my.google.com:228.228.228.228
+Ответ
+New entry was added
+
+

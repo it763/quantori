@@ -1,0 +1,59 @@
+Создание объекта класса router
+r1=router()
+
+Добавление интерфейсов
+In:
+r1.add_int('eth0','192.168.0.1/24')
+r1.add_int('eth1','192.168.1.1/24')
+Out:
+Interface eth0 assigned address 192.168.0.1/24
+Interface eth1 assigned address 192.168.1.1/24
+
+Вывод информации об интерфейсах
+In:
+r1.sh_ip_int()
+Out:
+Network interfaces list:
+eth0 :  192.168.0.1/24
+eth1 :  192.168.1.1/24
+
+Удаление интерфейса
+In:
+r1.no_ip_int('eth0')
+Out:
+Interface eth0 was deleted
+
+Вывод таблицы маршрутизации
+In:
+r1.sh_ip_route()
+Out:
+Routing table:
+192.168.0.0/24  via  192.168.0.1
+192.168.1.0/24  via  192.168.1.1
+
+Добавление записи в таблицу маршрутизации
+In:
+r1.ip_route_add('192.168.5.0/24','192.168.1.10')
+r1.sh_ip_route()
+Out:
+Route to 192.168.5.0/24 via 192.168.1.10 was added
+Routing table:
+192.168.0.0/24  via  192.168.0.1
+192.168.1.0/24  via  192.168.1.1
+192.168.5.0/24  via  192.168.1.10
+
+Попытка добавить маршрут через шлюз, путь к которому отсутствует в таблице маршрутизации
+In:
+r1.ip_route_add('192.168.5.0/24','192.168.10.10')
+Out:
+Gate 192.168.10.10 is not available
+
+Удаление записи из таблицы маршрутизации
+In:
+r1.ip_route_del('192.168.5.0/24')
+r1.sh_ip_route()
+Out:
+Route to 192.168.5.0/24 was deleted
+Routing table:
+192.168.0.0/24  via  192.168.0.1
+192.168.1.0/24  via  192.168.1.1
